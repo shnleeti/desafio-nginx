@@ -1,4 +1,4 @@
-FROM node:15
+FROM node:15 as build
 
 WORKDIR /usr/src/app
 
@@ -10,5 +10,14 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 COPY . .
+
+RUN npm install
+
+FROM node:15-alpine
+
+WORKDIR /usr/src/app
+
+COPY --from=build /usr/local/bin/dockerize /usr/local/bin
+COPY --from=build /usr/src/app /usr/src/app/
 
 EXPOSE 3000

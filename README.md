@@ -16,10 +16,6 @@ Gere o docker-compose de uma forma que basta apenas rodarmos: docker-compose up 
 ### Para rodar a aplicação utilize o docker-compose.
 ---
 ```
-docker-compose up -d --build (para realizar a build)
-
-ou
-
 docker-compose up -d
 ```
 
